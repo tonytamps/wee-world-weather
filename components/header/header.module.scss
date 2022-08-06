@@ -1,0 +1,19 @@
+@import '/styles/variables';
+
+.header {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  padding: 0 5rem;
+}
+
+.city {
+  color: $primary-color;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+
+  &.active {
+    color: $active-color;
+    font-weight: 500;
+  }
+}
