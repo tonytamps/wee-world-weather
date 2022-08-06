@@ -1,7 +1,9 @@
 $primary-color: #121115;
 $background-color: #EFF6FA;
+$active-color: #77AFE5;
 
 :export {
   primaryColor: $primary-color;
   backgroundColor: $background-color;
+  activeColor: $active-color;
 }
