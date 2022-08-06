@@ -7,25 +7,15 @@ const cx = classNames.bind(styles);
 
 type Props = {
     currentPath: string;
+    cities: City[];
 };
-
-type City = {
-    id: string;
-    name: string;
-    path: string;
-};
-
-const cities: City[] = [
-    { id: "YOW", name: "Ottawa", path: "/ottawa" },
-    { id: "MEL", name: "Melbourne", path: "/melbourne" },
-    { id: "WLG", name: "Wellington", path: "/wellington" },
-];
 
 export class Header extends Component<Props> {
     renderCityLink = ({ id, name, path }: City): ReactNode => {
+        const { currentPath } = this.props;
         const cityStyle = cx({
             [styles.city]: true,
-            [styles.active]: path === this.props.currentPath,
+            [styles.active]: path === currentPath,
         });
 
         return (
@@ -36,6 +26,7 @@ export class Header extends Component<Props> {
     };
 
     render() {
+        const { cities } = this.props;
         return <header className={styles.header}>{cities.map(this.renderCityLink)}</header>;
     }
 }
