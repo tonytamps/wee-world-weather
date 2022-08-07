@@ -7,6 +7,7 @@ type City = {
 
 type Forecast = {
     date: string;
+    day: string;
     temp: number;
     icon: number;
     text: string;

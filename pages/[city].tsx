@@ -17,6 +17,11 @@ const cities: City[] = [
     { id: "WLG", name: "Wellington", path: "/wellington", locationKey: "250938" },
 ];
 
+export const dayNameFromDateString = (date: string): string => {
+    const dateObj = new Date(date);
+    return dateObj.toLocaleDateString("en-CA", { weekday: "short" });
+};
+
 export const getServerSideProps: GetServerSideProps = async ({ res, query }) => {
     res.setHeader("Cache-Control", "public, s-maxage=600, stale-while-revalidate=3600");
 
@@ -202,6 +207,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
     const weeWorldWeatherForecast = accuweatherForecast.DailyForecasts.map(
         ({ Date, Temperature, Day }) => ({
             date: Date,
+            day: dayNameFromDateString(Date),
             temp: Temperature.Maximum.Value,
             icon: Day.Icon,
             text: Day.IconPhrase,
