@@ -4,12 +4,14 @@
   display: flex;
   flex: 1;
   justify-content: space-between;
-  padding: 0 4rem;
+  padding: 0 3rem;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .city {
+  flex: 1;
+  text-align: center;
   color: $primary-color;
   font-size: 1.8rem;
   text-transform: uppercase;
