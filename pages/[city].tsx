@@ -10,13 +10,14 @@ type Props = {
 };
 
 const cities: City[] = [
-    { id: "YOW", name: "Ottawa", path: "/ottawa" },
-    { id: "MEL", name: "Melbourne", path: "/melbourne" },
-    { id: "WLG", name: "Wellington", path: "/wellington" },
+    { id: "YOW", name: "Ottawa", path: "/ottawa", locationKey: "55487" },
+    { id: "MEL", name: "Melbourne", path: "/melbourne", locationKey: "26216" },
+    { id: "WLG", name: "Wellington", path: "/wellington", locationKey: "250938" },
 ];
 
 class CityPage extends Component<Props> {
     static async getInitialProps({ query }: NextPageContext) {
+        // http://dataservice.accuweather.com/forecasts/v1/daily/5day/55487?apikey=${process.env.ACCUWEATHER_API_KEY}
         return { pathname: `/${query.city}` };
     }
 
