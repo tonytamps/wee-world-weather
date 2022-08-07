@@ -1,7 +1,8 @@
-import styles from "./header.module.scss";
 import React, { Component, ReactNode } from "react";
 import Link from "next/link";
 import classNames from "classnames/bind";
+
+import styles from "./header.module.scss";
 
 const cx = classNames.bind(styles);
 

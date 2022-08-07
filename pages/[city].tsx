@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { GetServerSideProps } from "next";
-import Head from "next/head";
+
 import { Header } from "../components/header";
 import { ForecastComponent } from "../components/forecast";
+
+import { getForecast } from "../lib/weather";
 
 import styles from "../styles/city.module.scss";
 
@@ -16,31 +18,6 @@ const cities: City[] = [
     { id: "MEL", name: "Melbourne", path: "/melbourne", locationKey: "26216" },
     { id: "WLG", name: "Wellington", path: "/wellington", locationKey: "250938" },
 ];
-
-export const dayNameFromDateString = (date: string): string => {
-    const dateObj = new Date(date);
-    return dateObj.toLocaleDateString("en-CA", { weekday: "short" });
-};
-
-export const getForecast = async (locationKey: string) => {
-    const forecastRes = await fetch(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${process.env.ACCUWEATHER_API_KEY}&language=en-CA&metric=true`
-    );
-
-    if (!forecastRes.ok) {
-        throw new Error("Error fetching forecast");
-    }
-
-    const accuweatherForecast: AccuweatherForecast = await forecastRes.json();
-
-    return accuweatherForecast.DailyForecasts.map(({ Date, Temperature, Day }) => ({
-        date: Date,
-        day: dayNameFromDateString(Date),
-        temp: Temperature.Maximum.Value,
-        icon: Day.Icon,
-        text: Day.IconPhrase,
-    }));
-};
 
 export const getServerSideProps: GetServerSideProps = async ({ res, query }) => {
     const pathname = `/${query.city}`;
@@ -70,11 +47,6 @@ class CityPage extends Component<Props> {
 
         return (
             <div className={styles.container}>
-                <Head>
-                    <title>Wee World Weather</title>
-                    <meta name="description" content="Tiny little itty-bitty wee weather app" />
-                    <link rel="icon" href="/favicon.ico" />
-                </Head>
                 <Header currentPath={this.props.pathname} cities={cities} />
                 <main className={styles.main}>
                     {validCity ? (
