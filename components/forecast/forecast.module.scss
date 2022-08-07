@@ -1,0 +1,88 @@
+@import 'styles/variables';
+
+.forecastPanel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 4px 20px 2px rgba(51,51,51,0.2);
+    box-shadow: 3px 4px 20px 2px rgba(51,51,51,0.2);
+}
+
+.forecastTodayPanel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: $background-color;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 2.7rem;
+    font-size: 1.6rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecastTodayIcon {
+    font-size: 6.2rem;
+    color: #D4EFEF;
+}
+
+.forecastTodayDegrees {
+    font-family: Teko, sans-serif;
+    font-size: 5rem;
+    font-weight: 400;
+}
+
+.forecastTodayText {
+    margin-top: -15px;
+}
+
+.forecastTodayDetail {
+    display: flex;
+    flex: 1;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.forecastFuturePanels {
+    display: flex;
+    flex: 1;
+    gap: 5px;
+    width: 100%;
+}
+
+.forecastFutureTile {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $background-color;
+    padding: 1.5rem;
+    font-size: 1.3rem;
+
+    &:first-child {
+        border-bottom-left-radius: 5px;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: 5px;
+    }
+}
+
+.forecastFutureIcon {
+    font-size: 3rem;
+    color: #D4EFEF;
+    margin: 1rem 0;
+}
+
+.forecastFutureDegrees {
+    font-family: Teko, sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
