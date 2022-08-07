@@ -1,62 +1,60 @@
 import styles from "./forecast.module.scss";
-import React, { Component, ReactNode } from "react";
-// import classNames from "classnames/bind";
+import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faAmbulance, faAnchor } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faAmbulance, faAnchor, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
-// const cx = classNames.bind(styles);
+type Props = {
+    forecast: Forecast[];
+};
 
-type Props = {};
+export const fontAwesomeIconForIconCode = (icon: number): IconDefinition => {
+    switch (icon) {
+        case 16:
+            return faSearch;
+        case 17:
+            return faAmbulance;
+        case 18:
+            return faAnchor;
+        default:
+            return faAnchor;
+    }
+};
 
-export class Forecast extends Component<Props> {
-    // renderCityLink = ({ id, name, path }: City): ReactNode => {
-    //     const { currentPath } = this.props;
-    //     const cityStyle = cx({
-    //         [styles.city]: true,
-    //         [styles.active]: path === currentPath,
-    //     });
-    //
-    //     return (
-    //         <Link key={id} href={path}>
-    //             <a className={cityStyle}>{name}</a>
-    //         </Link>
-    //     );
-    // };
+export const dayNameFromDateString = (date: string) => {
+    const dateObj = new Date(date);
+    return dateObj.toLocaleDateString("en-CA", { weekday: "short" });
+};
 
+export class ForecastComponent extends Component<Props> {
     render() {
+        const { forecast } = this.props;
+        const [today, ...rest] = forecast;
         return (
             <div className={styles.forecastPanel}>
                 <div className={styles.forecastTodayPanel}>
                     <p>Today</p>
                     <div className={styles.forecastTodayDetail}>
-                        <FontAwesomeIcon icon={faSearch} className={styles.forecastTodayIcon} />
+                        <FontAwesomeIcon
+                            icon={fontAwesomeIconForIconCode(today.icon)}
+                            className={styles.forecastTodayIcon}
+                        />
                         <div>
-                            <p className={styles.forecastTodayDegrees}>19°</p>
-                            <p className={styles.forecastTodayText}>Clouds</p>
+                            <p className={styles.forecastTodayDegrees}>{today.temp}°</p>
+                            <p className={styles.forecastTodayText}>{today.text}</p>
                         </div>
                     </div>
                 </div>
                 <div className={styles.forecastFuturePanels}>
-                    <div className={styles.forecastFutureTile}>
-                        <p>Wed</p>
-                        <FontAwesomeIcon icon={faSearch} className={styles.forecastFutureIcon} />
-                        <p className={styles.forecastFutureDegrees}>19°</p>
-                    </div>
-                    <div className={styles.forecastFutureTile}>
-                        <p>Thu</p>
-                        <FontAwesomeIcon icon={faSearch} className={styles.forecastFutureIcon} />
-                        <p className={styles.forecastFutureDegrees}>19°</p>
-                    </div>
-                    <div className={styles.forecastFutureTile}>
-                        <p>Fri</p>
-                        <FontAwesomeIcon icon={faSearch} className={styles.forecastFutureIcon} />
-                        <p className={styles.forecastFutureDegrees}>19°</p>
-                    </div>
-                    <div className={styles.forecastFutureTile}>
-                        <p>Sat</p>
-                        <FontAwesomeIcon icon={faSearch} className={styles.forecastFutureIcon} />
-                        <p className={styles.forecastFutureDegrees}>19°</p>
-                    </div>
+                    {rest.map((dailyForecast, index) => (
+                        <div key={`daily-${index}`} className={styles.forecastFutureTile}>
+                            <p>{dayNameFromDateString(dailyForecast.date)}</p>
+                            <FontAwesomeIcon
+                                icon={fontAwesomeIconForIconCode(dailyForecast.icon)}
+                                className={styles.forecastFutureIcon}
+                            />
+                            <p className={styles.forecastFutureDegrees}>{dailyForecast.temp}°</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         );

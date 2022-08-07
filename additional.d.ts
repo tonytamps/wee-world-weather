@@ -4,3 +4,10 @@ type City = {
     path: string;
     locationKey: string;
 };
+
+type Forecast = {
+    date: string;
+    temp: number;
+    icon: number;
+    text: string;
+};
