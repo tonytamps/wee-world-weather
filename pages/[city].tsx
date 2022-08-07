@@ -3,6 +3,7 @@ import styles from "../styles/home.module.scss";
 import { Header } from "../components/header";
 import React, { Component } from "react";
 import { NextPageContext } from "next";
+import { Forecast } from "../components/forecast";
 
 type Props = {
     pathname: string;
@@ -30,7 +31,15 @@ class CityPage extends Component<Props> {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <Header currentPath={this.props.pathname} cities={cities} />
-                <main className={styles.main}>{validCity ? "valid" : "missing"}</main>
+                <main className={styles.main}>
+                    {validCity ? (
+                        <Forecast />
+                    ) : (
+                        <p className={styles.invalidCity}>
+                            The selected city is invalid, please select one from the menu above
+                        </p>
+                    )}
+                </main>
             </div>
         );
     }
