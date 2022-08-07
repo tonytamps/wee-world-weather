@@ -4,9 +4,10 @@ html,
 body {
     padding: 0;
     margin: 1rem auto;
-    max-width: 1080px;
+    max-width: 800px;
     font-family: Roboto, sans-serif;
     font-weight: 100;
+    letter-spacing: 1px;
 }
 
 a {
@@ -16,6 +17,10 @@ a {
 
 * {
     box-sizing: border-box;
+}
+
+p {
+    margin: 0;
 }
 
 @media (prefers-color-scheme: dark) {
