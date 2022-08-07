@@ -48,11 +48,21 @@
     gap: 1rem;
 }
 
+.forecastTodayDetailLeft {
+    text-align: right;
+    width: 50%;
+}
+
+.forecastTodayDetailRight {
+    width: 50%;
+}
+
 .forecastFuturePanels {
     display: flex;
     flex: 1;
     gap: 5px;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .forecastFutureTile {
