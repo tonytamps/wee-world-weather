@@ -4,7 +4,7 @@ import Head from "next/head";
 import { Header } from "../components/header";
 import { ForecastComponent } from "../components/forecast";
 
-import styles from "../styles/home.module.scss";
+import styles from "../styles/city.module.scss";
 
 type Props = {
     pathname: string;
