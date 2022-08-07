@@ -128,7 +128,7 @@ export class ForecastComponent extends Component<Props> {
                             />
                         </div>
                         <div className={styles.forecastTodayDetailRight}>
-                            <p className={styles.forecastTodayDegrees}>{today.temp}°</p>
+                            <p className={styles.forecastTodayDegrees}>{Math.round(today.temp)}°</p>
                             <p className={styles.forecastTodayText}>{today.text}</p>
                         </div>
                     </div>
